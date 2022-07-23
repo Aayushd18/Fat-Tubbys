@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import Navbar from "./Navbar";
 import Hero from "../components/Home/Hero";
 
-export default function Home({ setTheme }) {
+export default function Home() {
   //* States
   // Wallet Connection
   const [walletConnected, setWalletConnected] = useState(false);
@@ -74,7 +74,7 @@ export default function Home({ setTheme }) {
     <div>
       <NextSeo title="Fat Tabbys" description="A NFT Marketplace" />
       {/* <Navbar web3ModalRef={web3ModalRef} /> */}
-      <Hero setTheme={setTheme} />
+      <Hero />
     </div>
   );
 }

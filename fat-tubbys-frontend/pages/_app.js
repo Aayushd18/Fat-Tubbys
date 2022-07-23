@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
-        <Component {...pageProps} data-theme="retro" />
+        <Component {...pageProps} />
       </SnackbarProvider>
     </ThemeProvider>
   );
