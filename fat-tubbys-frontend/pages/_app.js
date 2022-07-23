@@ -1,11 +1,14 @@
-import "../styles/globals.css";
-import { SnackbarProvider } from "notistack";
+import "../styles/globals.css"; // Tailwindcss
+import { SnackbarProvider } from "notistack"; // For Notifications
+import { ThemeProvider } from "next-themes"; // For Easy theme switching
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
-      <Component {...pageProps} />
-    </SnackbarProvider>
+    <ThemeProvider>
+      <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
+        <Component {...pageProps} data-theme="retro" />
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }
 

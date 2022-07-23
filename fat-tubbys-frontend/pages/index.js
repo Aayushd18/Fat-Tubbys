@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import Navbar from "./Navbar";
 import Hero from "../components/Home/Hero";
 
-export default function Home() {
+export default function Home({ setTheme }) {
   //* States
   // Wallet Connection
   const [walletConnected, setWalletConnected] = useState(false);
@@ -32,6 +32,9 @@ export default function Home() {
           preventDuplicate: true,
         });
     } catch (err) {
+      enqueueSnackbar(`Error connecting wallet : ${err.message}`, {
+        variant: "error",
+      });
       console.log(err);
     }
   };
@@ -63,7 +66,6 @@ export default function Home() {
         providerOptions: {},
         disableInjectedProvider: false,
       });
-
       connectWallet();
     }
   }, [walletConnected]);
@@ -72,7 +74,7 @@ export default function Home() {
     <div>
       <NextSeo title="Fat Tabbys" description="A NFT Marketplace" />
       {/* <Navbar web3ModalRef={web3ModalRef} /> */}
-      <Hero />
+      <Hero setTheme={setTheme} />
     </div>
   );
 }
