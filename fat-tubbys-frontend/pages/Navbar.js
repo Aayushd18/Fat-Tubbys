@@ -1,8 +1,11 @@
+import { useEffect, useRef, useState } from "react"
+import Web3Modal from 'web3modal'
+import { providers } from "ethers";
+
 export default function Navbar() {
 
   const [walletConnected, setWalletConnected] = useState(false)
 
-  const [loading, setLoading] = useState(false)
 
   const web3ModalRef = useRef()
 
@@ -34,6 +37,11 @@ export default function Navbar() {
     return web3Provider
   }
 
+  const getUserAddress = async () => {
+    const provider = await getProviderOrSigner(true);
+    return provider.getAddress()
+  }
+
   useEffect(() => {
     if (!walletConnected) {
       web3ModalRef.current = new Web3Modal({
@@ -45,7 +53,24 @@ export default function Navbar() {
       connectWallet()
     }
   }, [walletConnected])
-  
+
+  const renderButton = () => {
+    const address = "0x23daeee34";
+    if (!walletConnected) {
+      return (
+        <button onClick={connectWallet}>
+          Connect your wallet
+        </button>
+      );
+    } else {
+      return (
+        <button>
+          {address}
+        </button>
+      )
+    }
+  }
+
   return (
     <div className="p-11">
       <nav className="flex justify-between">
@@ -53,9 +78,7 @@ export default function Navbar() {
           Fat tubbys
         </div>
         <div>
-          <button className="bg-blue-500 p-3 rounded-lg text-white">
-            Connect Wallet
-          </button>
+          {renderButton()}
         </div>
       </nav>
     </div>
