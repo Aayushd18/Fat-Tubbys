@@ -26,3 +26,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.title-container {
+  background: url("/blob.svg");
+  background-repeat: no-repeat;
+}

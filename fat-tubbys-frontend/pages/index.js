@@ -43,6 +43,7 @@ export default function Home() {
     }
   };
 
+  // disconnect wallet 
   const disconnectWallet = () => {
     // web3ModalRef.current = null;
     web3ModalRef.current = null;
@@ -108,7 +109,7 @@ export default function Home() {
       <button
         onClick={disconnectWallet} 
         className="w-52 py-3 px-2 rounded-xl"
-        data-theme="night"
+        data-theme="aqua"
         >
           {address}
       </button>
@@ -116,7 +117,7 @@ export default function Home() {
   }
 
   return (
-    <div data-theme="aqua">
+    <div>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
