@@ -3,7 +3,6 @@ import Web3Modal from "web3modal";
 import { useEffect, useRef, useState } from "react";
 import { providers } from "ethers";
 import { useSnackbar } from "notistack";
-import Head from 'next/head';
 
 // Components
 import Navbar from "../components/Navbar/Navbar";
@@ -16,8 +15,8 @@ export default function Home() {
   // Set Loading state when there a process running
   const [loading, setLoading] = useState(false);
 
-  // User Address
-  const [address, setAddress] = useState("")
+  // Hold User EOA
+  const [address, setAddress] = useState("");
 
   // Holds the wallet hook
   const web3ModalRef = useRef();
@@ -25,7 +24,7 @@ export default function Home() {
   // Used for notifications
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  // Tries to connect wallet
+  // Tries to connect wallet, with error handling
   const connectWallet = async () => {
     try {
       const provider = await getProviderOrSigner();
@@ -43,16 +42,16 @@ export default function Home() {
     }
   };
 
+  // Disconnect wallet
   const disconnectWallet = () => {
-    // web3ModalRef.current = null;
     web3ModalRef.current = null;
     setWalletConnected(!walletConnected);
     enqueueSnackbar("Successfully disconnected Wallet", {
       variant: "success",
       preventDuplicate: true,
     });
-    console.log("disconnected")
-  }
+    console.log("disconnected");
+  };
 
   // Gets a provider or signer and checks if user is in right network
   const getProviderOrSigner = async (needSigner = false) => {
@@ -76,13 +75,20 @@ export default function Home() {
 
     return web3Provider;
   };
-  // get address of the user
-  const getUserAddress = async () => {
-    const provider = await getProviderOrSigner(true);
-    const address = await provider.getAddress();
-    setAddress(address.toString().substring(0, 15) + "...");
-  }
 
+  // Tries to get the address of the user
+  const getUserAddress = async () => {
+    try {
+      const provider = await getProviderOrSigner(true);
+      const address = await provider.getAddress();
+      setAddress(address.toString().substring(0, 15) + "...");
+    } catch (error) {
+      enqueueSnackbar(`Error Getting user Address : ${error.message}`, {
+        variant: "error",
+      });
+      throw new Error(error);
+    }
+  };
 
   // Runs connect wallet for network Mumbai
   useEffect(() => {
@@ -97,13 +103,11 @@ export default function Home() {
     }
   }, [walletConnected]);
 
+  // Render Navbar button based on Wallet connection
   const renderButton = () => {
     if (!walletConnected) {
       return (
-        <button
-         onClick={connectWallet}
-         className="w-52 py-3 px-2 rounded-xl"
-         >
+        <button onClick={connectWallet} className="w-52 py-3 px-2 rounded-xl">
           Connect your wallet
         </button>
       );
@@ -111,26 +115,19 @@ export default function Home() {
 
     return (
       <button
-        onClick={disconnectWallet} 
+        onClick={disconnectWallet}
         className="w-52 py-3 px-2 rounded-xl"
         data-theme="night"
-        >
-          {address}
+      >
+        {address}
       </button>
-    )
-  }
+    );
+  };
 
   return (
-    <div data-theme="aqua">
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap" rel="stylesheet"/> 
-      </Head>
-      <NextSeo title="Fat Tabbys" description="A NFT Marketplace"/>
-      <Navbar 
-        renderButton={renderButton}
-      />
+    <div>
+      <NextSeo title="Fat Tabbys" description="A NFT Marketplace" />
+      <Navbar renderButton={renderButton} />
       <Hero />
     </div>
   );
