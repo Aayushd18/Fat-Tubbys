@@ -7,6 +7,7 @@ import { useSnackbar } from "notistack";
 // Components
 import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Home/Hero";
+import Latest from "../components/Home/Latest";
 
 export default function Home() {
   //* States
@@ -128,7 +129,9 @@ export default function Home() {
     <div>
       <NextSeo title="Fat Tabbys" description="A NFT Marketplace" />
       <Navbar renderButton={renderButton} />
+
       <Hero />
+      <Latest />
     </div>
   );
 }
