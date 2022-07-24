@@ -6,8 +6,16 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+	overflow-x: scroll;
+}
+
+body::-webkit-scrollbar { /* WebKit */
+	width: 0;
+	height: 0;
 }
 
 a {
