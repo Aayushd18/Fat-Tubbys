@@ -46,7 +46,12 @@ export default function Home() {
 
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 80001) {
-      window.alert("Please change the network to Mumbai Testnet");
+      enqueueSnackbar(
+        `You are in the wrong network. Please switch to Mumbai Polygon Testnet`,
+        {
+          variant: "error",
+        }
+      );
       throw new Error("Please change the network to Mumbai Testnet");
     }
 
