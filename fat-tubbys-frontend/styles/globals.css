@@ -28,6 +28,7 @@ a {
 }
 
 .title-container {
-  background: url("/blob.svg");
+  background-image: url("/blob.svg");
   background-repeat: no-repeat;
+  background-size: contain;
 }

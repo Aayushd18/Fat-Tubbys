@@ -2658,6 +2658,11 @@ punycode@^2.1.0:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+qr-image-color@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/qr-image-color/-/qr-image-color-3.2.1.tgz#9d40e31edd85e71aef4ed6f13d2d57fff0391483"
+  integrity sha512-3KcE4rGaYy9I6loQQlrHugNWIlOk31obcq11hmGQKhPIwCPs78xm0vXBh5dAsAwhDcxRpiMx5TzhW1BDtvbwzQ==
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
@@ -2695,6 +2700,13 @@ react-is@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-qr-image@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-qr-image/-/react-qr-image-1.1.0.tgz#c330509306fa0fe5cbd9f5b84761ca9d242502a6"
+  integrity sha512-At4jJQBLfYsnHQBqw8j8An7jmkc60rZyA4ZGEzUI5T6LJZMrOFiDUHxWkmsImbdop7PeZSWvm86ao5rtqr0wbA==
+  dependencies:
+    qr-image-color "^3.2.1"
 
 react-transition-group@^4.4.2:
   version "4.4.2"
