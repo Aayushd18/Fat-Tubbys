@@ -11,13 +11,9 @@ import Latest from "../components/Home/Latest";
 
 export default function Home() {
   //* States
-  // Wallet Connection
-  const [walletConnected, setWalletConnected] = useState(false);
-  // Set Loading state when there a process running
-  const [loading, setLoading] = useState(false);
-
-  // Hold User EOA
-  const [address, setAddress] = useState("");
+  const [walletConnected, setWalletConnected] = useState(false); // Is the wallet connected?
+  const [loading, setLoading] = useState(false); // Is the App Loading?
+  const [address, setAddress] = useState(""); // Whats the EOA address
 
   // Holds the wallet hook
   const web3ModalRef = useRef();
@@ -28,18 +24,27 @@ export default function Home() {
   // Tries to connect wallet, with error handling
   const connectWallet = async () => {
     try {
+      setLoading(true);
+      web3ModalRef.current = new Web3Modal({
+        network: "mumbai",
+        providerOptions: {},
+        disableInjectedProvider: false,
+      });
       const provider = await getProviderOrSigner();
-      setWalletConnected(true);
-      if (provider)
+      if (provider) {
+        await getUserAddress();
+        setWalletConnected(true);
         enqueueSnackbar("Successfully connected Wallet", {
           variant: "success",
           preventDuplicate: true,
         });
+      }
+      setLoading(false);
     } catch (err) {
       enqueueSnackbar(`Error connecting wallet : ${err.message}`, {
         variant: "error",
       });
-      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -51,27 +56,26 @@ export default function Home() {
       variant: "success",
       preventDuplicate: true,
     });
-    console.log("disconnected");
   };
 
-  // Gets a provider or signer and checks if user is in right network
+  // Gets a provider or signer and checks if user is in right network (Rinkeby)
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 80001) {
+    const { chainId, name } = await web3Provider.getNetwork();
+    if (chainId !== 4) {
       enqueueSnackbar(
-        `You are in the wrong network. Please switch to Mumbai Polygon Testnet`,
+        `You are in the ${name.toUpperCase()} network. Please switch to Rinkeby Network`,
         {
           variant: "error",
+          preventDuplicate: true,
         }
       );
-      throw new Error("Please change the network to Mumbai Testnet");
+      return;
     }
 
     if (needSigner) {
-      const signer = web3Provider.getSigner();
-      return signer;
+      return web3Provider.getSigner();
     }
 
     return web3Provider;
@@ -80,35 +84,25 @@ export default function Home() {
   // Tries to get the address of the user
   const getUserAddress = async () => {
     try {
-      const provider = await getProviderOrSigner(true);
-      const address = await provider.getAddress();
+      const signer = await getProviderOrSigner(true);
+      const address = await signer.getAddress();
       setAddress(address.toString().substring(0, 15) + "...");
     } catch (error) {
       enqueueSnackbar(`Error Getting user Address : ${error.message}`, {
         variant: "error",
       });
-      throw new Error(error);
     }
   };
-
-  // Runs connect wallet for network Mumbai
-  useEffect(() => {
-    if (!walletConnected) {
-      web3ModalRef.current = new Web3Modal({
-        network: "mumbai",
-        providerOptions: {},
-        disableInjectedProvider: false,
-      });
-      connectWallet();
-      getUserAddress();
-    }
-  }, [walletConnected]);
 
   // Render Navbar button based on Wallet connection
   const renderButton = () => {
     if (!walletConnected) {
       return (
-        <button onClick={connectWallet} className="w-52 py-3 px-2 rounded-xl" data-theme="aqua">
+        <button
+          onClick={connectWallet}
+          className="w-52 py-3 px-2 rounded-xl"
+          data-theme="aqua"
+        >
           Connect your wallet
         </button>
       );
@@ -127,7 +121,10 @@ export default function Home() {
 
   return (
     <div>
-      <NextSeo title="Fat Tabbys" description="A NFT Marketplace" />
+      <NextSeo
+        title="Fat Tabbys"
+        description="Decentralised Room Rental Service"
+      />
       <Navbar renderButton={renderButton} />
 
       <Hero />

@@ -6,9 +6,9 @@ export default function Hero() {
     <>
       <div className="w-screen h-auto p-12 flex justify-around items-start pt-12">
         <div className="title-container w-3/4 h-2/4 flex flex-col p-36  space-y-6 border-2 border-base-200/20">
-          <h1 className="font-medium text-7xl dark:gray-200">Fat Tubbys</h1>
+          <h1 className="font-medium text-7xl dark:gray-200">Fat Tubby's</h1>
           <p className="text-3xl dark:gray-200">
-            A Decentralised token based House/Room renting service
+            Decentralized Room Rental Service
           </p>
         </div>
         <div className="mr-36">
@@ -26,13 +26,14 @@ const Mockup = () => {
         <div className="display">
           <div className="artboard artboard-demo phone-1 flex flex-col justify-evenly items-center">
             <div className=" border-b-2 border-b-slate-400">
-              <h1 className=" font-extrabold text-3xl pb-4">Put, Rent & Stay</h1>
+              <br></br>
+              <h1 className=" font-extrabold text-3xl pb-4">Pay, Rent & Stay</h1>
             </div>
             <div>
             <ul className="steps steps-vertical">
-              <li className="step step-info"><h1 className=" font-extrabold text-3xl my-11">Rent a NFT</h1></li>
-              <li className="step step-info"><h1 className=" font-extrabold text-3xl">Get a QR code</h1></li>
-              <li className="step step-info"><h1 className=" font-extrabold text-3xl">Enjoy your Stay</h1></li>
+              <li className="step step-info"><h1 className=" font-extrabold text-3xl my-8">Rent NFT</h1></li>
+              <li className="step step-info"><h1 className=" font-extrabold text-3xl">Receive QR Code</h1></li>
+              <li className="step step-info"><h1 className=" font-extrabold text-3xl">Enjoy your Stay!</h1></li>
             </ul>
             </div>                
           </div>
