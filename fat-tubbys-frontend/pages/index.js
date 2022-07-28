@@ -5,7 +5,7 @@ import { providers } from "ethers";
 import { useSnackbar } from "notistack";
 
 // Components
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar/Navbar.jsx";
 import Hero from "../components/Home/Hero";
 import Latest from "../components/Home/Latest";
 
