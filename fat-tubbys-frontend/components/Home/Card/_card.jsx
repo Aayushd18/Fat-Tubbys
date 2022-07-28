@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Modal from "../Modal/Modal";
 
 const _card = ({ title, description, button, link, image }) => {
   return (
@@ -10,9 +11,10 @@ const _card = ({ title, description, button, link, image }) => {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end pt-5">
-          <button className="btn btn-primary">
+          <Modal />
+          {/* <button className="btn btn-primary">
             <Link href={link}>{button}</Link>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
