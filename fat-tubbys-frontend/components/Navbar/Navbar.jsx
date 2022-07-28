@@ -14,7 +14,7 @@ export default function Navbar({ renderButton }) {
               <input
                 type="checkbox"
                 onChange={(e) =>
-                  e.target.checked ? setTheme("light") : setTheme("night")
+                  e.target.checked ? setTheme("winter") : setTheme("night")
                 }
               />
               <svg
