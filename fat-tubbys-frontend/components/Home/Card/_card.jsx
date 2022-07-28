@@ -11,10 +11,7 @@ const _card = ({ title, description, button, link, image }) => {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end pt-5">
-          <Modal />
-          {/* <button className="btn btn-primary">
-            <Link href={link}>{button}</Link>
-          </button> */}
+          <Modal title={title} description={description} image={image} />
         </div>
       </div>
     </div>
