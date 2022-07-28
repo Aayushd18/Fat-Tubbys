@@ -3,10 +3,10 @@ export default function Navbar({ renderButton }) {
     <div className="px-11 py-6 shadow">
       <nav className="flex justify-between">
         <div className="text-4xl text-blue-300 font-extrabold">Fat Tubbys</div>
-        <div>
-         {renderButton()}
-        </div>
+        <div>{renderButton()}</div>
       </nav>
     </div>
   );
 }
+
+//TODO : Add ability to switch themes
