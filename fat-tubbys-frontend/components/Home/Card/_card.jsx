@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Modal from "../Modal/Modal";
+import ModalForAvailableRooms from "../Modal/ModalForAvailableRooms";
+import ModalForRentedRooms from "../Modal/ModalForRentedRooms";
 
-const _card = ({ title, description, button, link, image }) => {
+const _card = ({ title, description, button, link, image, available }) => {
   return (
     <div className="card w-96 glass shadow-md">
       <figure>
@@ -11,7 +12,11 @@ const _card = ({ title, description, button, link, image }) => {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end pt-5">
-          <Modal title={title} description={description} image={image} />
+          {
+            available ? <ModalForAvailableRooms title={title} description={description} image={image} />
+            : <ModalForRentedRooms title={title} description={description} image={image} />
+          }
+          
         </div>
       </div>
     </div>

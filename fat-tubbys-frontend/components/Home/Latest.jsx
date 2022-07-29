@@ -155,6 +155,7 @@ const Latest = () => {
                       button="Book Now"
                       image={room.image}
                       link="#"
+                      available={true}
                     />
                   );
                 })
@@ -180,6 +181,7 @@ const Latest = () => {
                       button="Book Now"
                       image={room.image}
                       link="#"
+                      available={false}
                     />
                   );
                 })}
