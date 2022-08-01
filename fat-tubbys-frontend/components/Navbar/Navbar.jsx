@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import AddNwwRoomModal from "../Home/Modal/AddNewRoomModal";
 
 export default function Navbar({ renderButton }) {
   const { theme, setTheme } = useTheme();
@@ -8,6 +9,7 @@ export default function Navbar({ renderButton }) {
       <nav className="flex justify-between">
         <div className="text-4xl text-blue-300 font-extrabold">Fat Tubbys</div>
         <div className="flex flex-row justify-center items-center space-x-5">
+          <PutNFT />
           {renderButton()}
           <div>
             <label className="swap swap-rotate">
@@ -40,3 +42,17 @@ export default function Navbar({ renderButton }) {
 }
 
 //TODO : Add ability to switch themes
+
+
+
+
+// Component to place a room to be available to rent
+const PutNFT = () => {
+  return (
+    <div>
+      <button className=" font-bold hover:underline">
+        <AddNwwRoomModal />
+      </button>
+    </div>
+  )
+}

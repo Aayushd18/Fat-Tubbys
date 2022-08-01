@@ -8,7 +8,7 @@ export default function ModalForAvailableRooms({ title, description, image }) {
 
       <input type="checkbox" id={title} className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box w-11/12 max-w-5xl">
           <ModalContent title={title} description={description} image={image}/>
           <div className="flex justify-end items-end space-x-6">
             <div className="modal-action">
@@ -33,7 +33,7 @@ const ModalContent = ({ title, description, image }) => {
       <p>{`Owned by - ${owner}`}</p>
       <div className="mt-4 border-2 border-blue-500 p-3 rounded-lg">
         <h1 className=" font-semibold">Rent Form</h1>
-        <div class="divider"></div> 
+        <div className="divider"></div> 
         <ModalForm />
       </div>
     </div>
@@ -47,12 +47,12 @@ const ModalForm = () => {
         onSubmit={(e) => {e.preventDefault(); console.log(e.target.duration.value)}}
         className="space-y-4"
       >
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Enter Duration of Stay: </span>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Enter Duration of Stay: </span>
           </label>
-          <label class="input-group">
-            <input type="number" placeholder="hours" name="duration" class="input input-bordered" />
+          <label className="input-group">
+            <input type="number" placeholder="hours" name="duration" className="input input-bordered" />
             <span>Hours</span>
           </label>
         </div>

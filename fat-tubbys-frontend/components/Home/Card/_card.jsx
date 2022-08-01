@@ -11,12 +11,11 @@ const _card = ({ title, description, button, link, image, available }) => {
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
-        <div className="card-actions justify-end pt-5">
+        <div className=" flex justify-end pt-5">
           {
             available ? <ModalForAvailableRooms title={title} description={description} image={image} />
             : <ModalForRentedRooms title={title} description={description} image={image} />
           }
-          
         </div>
       </div>
     </div>
