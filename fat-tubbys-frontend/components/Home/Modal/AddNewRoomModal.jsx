@@ -1,4 +1,7 @@
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
+
 export default function AddNwwRoomModal({ title, description, image }) {
+  const { address, isConnected } = useAccount();
   return (
     <>
       {/* <!-- The button to open modal --> */}
@@ -9,7 +12,7 @@ export default function AddNwwRoomModal({ title, description, image }) {
       <input type="checkbox" id="add-room" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box w-11/12 max-w-5xl">
-          <ModalContent />
+          <ModalContent/>
           <div className="flex justify-end items-end space-x-6">
             <div className="modal-action">
               <label htmlFor="add-room" className="btn">Close</label>
@@ -22,6 +25,7 @@ export default function AddNwwRoomModal({ title, description, image }) {
 }
 
 const ModalContent = () => {
+  
   return (
     <div className="flex flex-col justify-evenly items-start">
       <h1 className=" font-extrabold text-2xl">Add / Mint a Room</h1>
@@ -36,7 +40,7 @@ const ModalContent = () => {
         </div>
         <div className="flex flex-col justify-start items-start space-y-3">
           <label htmlFor="image-file" className="mb-1 underline">Select an Image:</label>
-          <input id="image-file" type="file" />
+          <input id="image-file" type="file" accept=''/>
         </div>
         <div className="mt-3">
           <button type="submit" className="btn btn-primary" >Add / Mint</button>

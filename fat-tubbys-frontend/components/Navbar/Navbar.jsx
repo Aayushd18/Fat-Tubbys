@@ -1,7 +1,8 @@
 import { useTheme } from "next-themes";
 import AddNwwRoomModal from "../Home/Modal/AddNewRoomModal";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-export default function Navbar({ renderButton }) {
+export default function Navbar() {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -10,7 +11,7 @@ export default function Navbar({ renderButton }) {
         <div className="text-4xl text-blue-300 font-extrabold">Fat Tubbys</div>
         <div className="flex flex-row justify-center items-center space-x-5">
           <PutNFT />
-          {renderButton()}
+          <ConnectButton />
           <div>
             <label className="swap swap-rotate">
               <input
@@ -50,9 +51,9 @@ export default function Navbar({ renderButton }) {
 const PutNFT = () => {
   return (
     <div>
-      <button className=" font-bold hover:underline">
+      <div className=" font-bold hover:underline">
         <AddNwwRoomModal />
-      </button>
+      </div>
     </div>
   )
 }
